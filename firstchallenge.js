@@ -20,7 +20,7 @@ function calculateGrade(marks) {
   }
   
   // Example usage:
-  let studentMarks = 890;
+  let studentMarks = 75;
   console.log(calculateGrade(studentMarks)); // Output: Grade: B
 
 
