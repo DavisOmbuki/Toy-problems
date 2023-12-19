@@ -1,5 +1,5 @@
 function calculateNetSalary(salary, benefits) {
-    const calculatePaye = (monthlyPay) => {
+    const calculateIncomeTax = (monthlyPay) => {
         if (monthlyPay >= 0 && monthlyPay <= 24000) {
             return monthlyPay * 0.10;
         } else if (monthlyPay <= 32333) {
@@ -18,26 +18,26 @@ function calculateNetSalary(salary, benefits) {
     };
 
     const calculateNssf = (monthlyPay) => {
-        let nssfRate = 0;
+        let nssfContribution = 0;
         if (monthlyPay > 6000 && monthlyPay <= 18000) {
-            nssfRate = monthlyPay * 0.12;
+            nssfContribution = monthlyPay * 0.12;
         } else if (monthlyPay >= 18001) {
-            nssfRate = monthlyPay * 0.12;
+            nssfContribution = monthlyPay * 0.12;
         }
-        return nssfRate;
+        return nssfContribution;
     };
 
-    const grossSalary = salary + benefits;
-    const payeDeduction = calculatePaye(grossSalary);
-    const nhifDeduction = calculateNhif(grossSalary);
-    const nssfDeduction = calculateNssf(grossSalary);
+    const grossEarnings = salary + benefits;
+    const taxDeduction = calculateIncomeTax(grossEarnings);
+    const nhifDeduction = calculateNhif(grossEarnings);
+    const nssfDeduction = calculateNssf(grossEarnings);
 
-    const netSalary = grossSalary - (payeDeduction + nhifDeduction + nssfDeduction);
+    const netSalary = grossEarnings - (taxDeduction + nhifDeduction + nssfDeduction);
 
     return {
-        GROSS_Salary: grossSalary,
+        GROSS_Earnings: grossEarnings,
         NET_Salary: netSalary,
-        PAYE_Deduction: payeDeduction,
+        TAX_Deduction: taxDeduction,
         NHIF_Deduction: nhifDeduction,
         NSSF_Deduction: nssfDeduction
     };
